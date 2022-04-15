@@ -25,7 +25,7 @@ public class Main {
         System.out.println("Количество несовершеннолетних: " + count);
 
         List<String> uppercaseList = persons.stream()
-                .filter(s -> s.getSex() == Sex.MAN) //TO DO
+                .filter(s -> s.getSex() == Sex.MAN)
                 .filter(s -> s.getAge() > 18)
                 .filter(s -> s.getAge() < 27)
                 .map(Person::getFamily)
@@ -34,23 +34,14 @@ public class Main {
 
         List<String> uppercaseList1 = persons.stream()
                 .filter(s -> s.getEducation() == Education.HIGHER)
-                .filter(s -> s.getSex() == Sex.MAN)
+                //.filter(s -> s.getSex() == Sex.MAN)
                 .filter(s -> s.getAge() > 18)
-                .filter(s -> s.getAge() < 65)
+                .filter(s -> s.getAge() < 65 && s.getSex() == Sex.MAN)
+                .filter(s -> s.getAge() < 60 && s.getSex() == Sex.WOMAN)
                 .map(Person::getFamily)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
-        System.out.println("Список по фамилии потенциально работоспособных мужчин с высшим образованием: " + uppercaseList1);
-
-        List<String> uppercaseList2 = persons.stream()
-                .filter(s -> s.getEducation() == Education.HIGHER)
-                .filter(s -> s.getSex() == Sex.WOMAN)
-                .filter(s -> s.getAge() > 18)
-                .filter(s -> s.getAge() < 60)
-                .map(Person::getFamily)
-                .sorted(Comparator.naturalOrder())
-                .collect(Collectors.toList());
-        System.out.println("Список по фамилии потенциально работоспособных женщин с высшим образованием: " + uppercaseList2);
+        System.out.println("Список по фамилии потенциально работоспособных с высшим образованием: " + uppercaseList1);
     }
 }
 
