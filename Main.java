@@ -34,10 +34,8 @@ public class Main {
 
         List<String> uppercaseList1 = persons.stream()
                 .filter(s -> s.getEducation() == Education.HIGHER)
-                //.filter(s -> s.getSex() == Sex.MAN)
                 .filter(s -> s.getAge() > 18)
-                .filter(s -> s.getAge() < 65 && s.getSex() == Sex.MAN)
-                .filter(s -> s.getAge() < 60 && s.getSex() == Sex.WOMAN)
+                .filter(s -> (s.getAge() < 65 && s.getSex() == Sex.MAN)||(s.getAge() < 60 && s.getSex() == Sex.WOMAN))
                 .map(Person::getFamily)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
